@@ -6,3 +6,5 @@ class AI(defaultAI):
     def next_move(self, hand, tsumo, remain_number):
         x = random.randrange(14)
         return hand[x]
+    def get_name(self):
+        return "random_discard"
