@@ -64,11 +64,15 @@ class ReplayMemory:
                 memoryLength = 2
             # 랜덤한 경험을 골라서 batch에 추가한다.
             randomIndex = random.randrange(1, memoryLength)
-            current_inputState = np.reshape(self.inputState[randomIndex], (1, nbActions))
-
+            #current_inputState = np.reshape(self.inputState[randomIndex], (1, nbActions))
+            current_inputState = np.zeros((1, nbStates))
+            current_nextState = np.zeros((1, nbStates))
+            for y in range(nbActions):
+                current_inputState[0][self.inputState[randomIndex][y]] += 1
+                current_nextState[0][self.nextState[randomIndex][y]] += 1
             target = sess.run(model, feed_dict={X:current_inputState})
 
-            current_nextState = np.reshape(self.nextState[randomIndex], (1, nbActions))
+            #current_nextState = np.reshape(self.nextState[randomIndex], (1, nbActions))
             current_outputs = sess.run(model, feed_dict={X: current_nextState})
 
             # Gives us Q_sa, the max q for the next state.
