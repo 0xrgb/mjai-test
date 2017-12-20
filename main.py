@@ -32,7 +32,7 @@ epsilonMinimumValue = 0.001  # 입실론이 가기를 원하는 최소값 (범�
 nbActions = 14  # 할 수 있는 행동의 가짓수 14개의 패중에서 버리는 것이기에 14로 설정
 #epoch
 hiddenSize = 100  # hidden layers 에 있는 뉴런 개수
-maxMemory = 500  # 메모리가 얼마나 많아야되는지
+maxMemory = 136  # 메모리가 얼마나 많아야되는지
 batchSize = 50  # The mini-batch size for training. Samples are randomly taken from memory till mini-batch size.
 #gridSize 필요 없을꺼 같아서 안 넣음
 nbStates = 34 * 4  # We eventually flatten to a 1d tensor to feed the network.
@@ -172,6 +172,8 @@ if __name__ == '__main__':
     # Add ops to sae and restore all the variables
     #saver = tf.train.Saver() #저장 부분은 잠시 따로
     #tf.initialize_all_variables.run()
+    #tf.initialize_all_variables()
+    tf.global_variables_initializer()
 
     #nn_ai 테스트 이외의 테스트 시 주석 처리 해야됨 (끝 부분)
 
